@@ -3,7 +3,9 @@
 a=[2,3,4]
 b=a
 b.insert(0,77)
-print(a) # a is also change to [77,2,3,4]
+print(a) # a is also change to [77,2,3,4],since b=a is that you give the memory address stored in a to b, so b points to the same space as a
+
+# but if you write b=a[:], then b point to another memory space, b and a are totally independent.
 
 2.
 
