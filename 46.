@@ -10,3 +10,28 @@ print(a) # a is also change to [77,2,3,4]
 a=[2,3,4]
 b=a.insert(1,88)
 print(b) #b is None, since insert return None
+
+
+3. wrong code
+
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums)==0:
+            return []
+        elif len(nums)==1:
+            return [nums]
+        
+        result=[]
+        
+        partialResult=self.permute(nums[1:])
+        
+        for permutation in partialResult:
+            for i in range(0,len(permutation)+1):
+                newPermutation=permutation[:i]+[nums[0]]+permutation[i+1:] #wrong is here: permutation[i+1:] should be permutation[i:]
+                result.append(newPermutation)
+                
+        return result
