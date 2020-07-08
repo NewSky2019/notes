@@ -1,0 +1,33 @@
+1. wrong answer:
+
+ class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        
+        i=m-1     # the wrong is here, when m==0, m-1=-1, -1 become the index of the last element
+        j=n-1
+        
+        ind=m+n-1
+        while ind>=m:
+            if nums1[i]>=nums2[j]:
+                nums1[ind]=nums1[i]
+                i=i-1
+                ind=ind-1
+            else:
+                nums1[ind]=nums2[j]
+                j=j-1
+                ind=ind-1
+                
+        
+        if j>=0:
+            while j>=0:
+                nums1[ind]=nums2[j]
+                j=j-1
+                ind=ind-1
+                
+                
+[0,0,0,0,0]
+0
+[1,2,3,4,5]
+5
+
+result:[5,1,2,3,4]
