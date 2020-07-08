@@ -1,0 +1,12 @@
+1.
+
+a=[2,3,4]
+b=a
+b.insert(0,77)
+print(a) # a is also change to [77,2,3,4]
+
+2.
+
+a=[2,3,4]
+b=a.insert(1,88)
+print(b) #b is None, since insert return None
