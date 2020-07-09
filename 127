@@ -1,0 +1,32 @@
+1. wrong 1
+
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+        currentLayer=[beginWord]
+        numTurns=0
+        while currentLayer!=[]:
+            numTurns=numTurns+1
+            nextLayer=[]
+            for word in currentLayer:
+                if word==endWord:
+                    return numTurns
+                else:
+                    for i in range(0,len(word)):
+                        for letter in "abcdefghijklmnopqrstuvwxyz":
+                            newWord=word[:i]+letter+word[i+1:]
+                            if newWord in wordList:
+                                nextLayer.append(newWord)
+            
+            #1. here, forgot currentLater=nextLayer. besides, this code doesn't check repeat, may go into circle
+                                
+        
+        return 0
+        
+        
+  
