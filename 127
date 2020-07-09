@@ -23,7 +23,7 @@ class Solution(object):
                             if newWord in wordList:
                                 nextLayer.append(newWord)
             
-            #1. here, forgot currentLater=nextLayer. besides, this code doesn't check repeat, may go into circle
+            #1. here, forgot currentLater=nextLayer. besides, this code doesn't check visited, may go into circle. checking visited not to save time, but to avoid go into infinite loop
                                 
         
         return 0
