@@ -1,0 +1,26 @@
+def set(self, key, value, timestamp):
+        """
+        :type key: str
+        :type value: str
+        :type timestamp: int
+        :rtype: None
+        """
+        if key not in self.theDict:
+            self.theDict[key]=[[value,timestamp]]  # its should be [ [..] ] rather than [..], otherwise, the later append will not work correctly
+        else:
+            self.theDict[key].append([value,timestamp])
+            
+ 
+ 
+compare the following two:
+
+theDict={}
+theDict["ej"]=[3,8]
+theDict["ej"].append([888,999])
+print(theDict)
+
+
+theDict={}
+theDict["ej"]=[[3,8]]
+theDict["ej"].append([888,999])
+print(theDict)
