@@ -77,4 +77,63 @@ class TimeMap(object):
                         right=mid-1
                         
                 return elements[mid][0]
+                
+                
+                
+                
+                
+                
+                
+                
+3. wrong code
+
+class TimeMap(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.theDict={}
+        
+
+    def set(self, key, value, timestamp):
+        """
+        :type key: str
+        :type value: str
+        :type timestamp: int
+        :rtype: None
+        """
+        if key in self.theDict:
+            self.theDict[key].append([value,timestamp])
+        else:
+            self.theDict[key]=[[value,timestamp]]
+        
+
+    def get(self, key, timestamp):
+        """
+        :type key: str
+        :type timestamp: int
+        :rtype: str
+        """
+        if key not in self.theDict:
+            return ""
+        else:
+            elements=self.theDict[key]
+            if elements[0][1]>timestamp:
+                return ""
+            else:
+                left=0
+                right=len(elements)-1
+                
+                while (right-left+1)>1:
+                    mid=left+(right-left)//2
+                    if elements[mid][1]<=timestamp:
+                        left=mid
+                    
+                    elif elements[mid][1]>timestamp:
+                        right=mid-1
+                        
+                return elements[left][0]
+        
+
         
