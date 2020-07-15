@@ -14,3 +14,22 @@ def f(board):
 f(board)
 
 the result is [[False, False, False], [False, False, False], [False, False, False]]
+
+
+
+a=[2,3,4]
+b=a[:]
+b[1]=999
+print(a)
+
+result is result is [2,3,4]
+
+
+
+
+a=[[2],[3],[4]]
+b=a[:]
+b[1][0]=999
+print(a)
+
+result is [[2], [999], [4]]
