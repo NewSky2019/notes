@@ -1,0 +1,16 @@
+board=[["C","A","A"],["A","A","A"],["B","C","D"]]
+
+def f(board):
+    numRows=len(board)
+    numCols=len(board[0])
+
+    for i in range(numRows):
+        for j in range(numCols):
+            a=board[:]
+            a[i][j]=False
+
+    print(board)
+
+f(board)
+
+the result is [[False, False, False], [False, False, False], [False, False, False]]
