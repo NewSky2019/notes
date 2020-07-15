@@ -33,3 +33,11 @@ b[1][0]=999
 print(a)
 
 result is [[2], [999], [4]]
+
+import copy
+a=[[2],[3],[4]]
+b=copy.deepcopy(a)
+b[1][0]=999
+print(a)
+
+result is [[2], [3], [4]]
