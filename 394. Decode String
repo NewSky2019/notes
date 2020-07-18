@@ -470,7 +470,7 @@ class Solution(object):
             while i>=0:
                 if string[i]=="]":
                     lastRightBracket=i
-                    break
+                    break    #forgot to add else, i=i-1
                     
             
             for i in range(len(string)):
