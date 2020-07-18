@@ -53,3 +53,107 @@ def decodeString(s):
 
 s="3[a]2[bc]"
 print(decodeString(s))
+
+
+
+
+
+
+
+
+
+
+
+
+def decodeString(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+
+    bracketClusters = findBracketClusters(s)
+    print("bracketClusters is ",bracketClusters)
+
+    if bracketClusters == []:
+        print("empty")
+        return s
+
+    startPos = [0]
+
+    for i in range(len(bracketClusters) - 1):
+        startPos.append(bracketClusters[i][1] + 1)
+
+    endPos = []
+
+    for i in range(len(bracketClusters)):
+        endPos.append(bracketClusters[i][1])
+
+    endPos[-1] = len(s) - 1
+
+    stringClusters = []
+
+    for i in range(len(startPos)):
+        string = s[startPos[i]:endPos[i] + 1]
+        stringClusters.append(string)
+
+    result = ""
+
+    for string in stringClusters:
+        print("this string is ",string)
+        for i in range(len(string)):
+            if string[i] == "[":
+                firstLeftBracket = i
+                break
+
+        i = len(string) - 1
+        while i >= 0:
+            if string[i] == "]":
+                lastRightBracket = i
+                break
+
+        for i in range(len(string)):
+            if s[i].isdigit() == True:
+                digitStart = i
+                break
+
+        digitString = s[digitStart:firstLeftBracket]
+        times = int(digitString)
+
+        if digitStart != 0:
+            preString = string[:digitStart]
+        else:
+            preString = ""
+
+        if lastRightBracket != len(string) - 1:
+            postString = s[lastRightBracket + 1:]
+        else:
+            postString = ""
+
+        decodeResult = preString + times * decodeString(s[firstLeftBracket:lastRightBracket]) + postString
+        result = result + decodeResult
+
+    return result
+
+
+def findBracketClusters(s):
+    result = []
+    stack = []
+
+    for i in range(len(s)):
+        if s[i] == "[" and stack == []:
+            stack.append(s[i])
+            clusterLeft = i
+
+        elif s[i] == "[" and stack != []:
+            stack.append(s[i])
+
+        elif s[i] == "]":
+            stack.pop()
+            if stack == []:
+                clusterRight = i
+                result.append([clusterLeft, clusterRight])
+
+    return result
+
+s="3[a]2[bc]"
+decodeString(s)
