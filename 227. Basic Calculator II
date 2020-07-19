@@ -61,4 +61,90 @@ Output
 6
 Expected
 42
+
+
+
+
+2. wrong: -3//2 or 3//-2 =-2. -(3//2)=-1
+
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack=[]
+        op="+"
+        i=0
+        while i<=len(s)-1:
+            if s[i]==" ":
+                i=i+1
+            
+            
+            elif s[i].isdigit()==True:
+                number=self.getNumberStr(i,s)
+                if op=="+":
+                    stack.append(int(number))
+                elif op=="-":
+                    stack.append(-1*int(number))
+                    
+                i=i+len(number)
+            
+            elif s[i]=="+":
+                op="+"
+                i=i+1
+            
+            elif s[i]=="-":
+                op="-"
+                i=i+1
+                
+            elif s[i]=="*":
+                for j in range(i+1,len(s)):
+                    if s[j]!=" ":
+                        break
+                        
+                operand2Str=self.getNumberStr(j,s)
+                operand1=stack.pop()
+                stack.append(operand1*int(operand2Str))
+                i=j+len(operand2Str)
+                
+            
+            elif s[i]=="/":
+                for j in range(i+1,len(s)):
+                    if s[j]!=" ":
+                        break
+                        
+                operand2Str=self.getNumberStr(j,s)
+                operand1=stack.pop()
+                stack.append(operand1//int(operand2Str))
+                i=j+len(operand2Str)
+                
+        
+        result=0
+        
+        for i in stack:
+            result=result+i
+            
+        return result
+                
+            
+                
+                
+                    
+            
+            
+        
+    
+    def getNumberStr(self,startIndex,s):
+        
+        i=startIndex
+        while i<=len(s)-1:
+            if s[i].isdigit()==False:
+                break
+            else:
+                i=i+1
+                
+        endIndex=i-1
+        
+        return s[startIndex:endIndex+1]
         
