@@ -1,0 +1,64 @@
+1. wrong 
+
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack=[]
+        op="+"
+        
+        i=0
+        while i<=len(s)-1:
+            if s[i]==" ":
+                i=i+1
+            
+            elif s[i].isdigit()==True:
+                stack.append(int(s[i]))
+                i=i+1
+                
+            elif s[i]=="+":
+                op="+"
+                i=i+1
+            
+            elif s[i]=="-":
+                op="-"
+                i=i+1
+                
+            elif s[i]=="*":
+                operand1=stack.pop()
+                for j in range(i+1,len(s)):
+                    if s[j]!=" ":
+                        operand2=int(s[j])
+                        break
+                           
+                            
+                stack.append(operand1*operand2)
+                i=j+1
+                
+            elif s[i]=="/":
+                operand1=stack.pop()
+                for j in range(i+1,len(s)):
+                    if s[j]!=" ":
+                        operand2=int(s[j])
+                        break
+                
+                stack.append(operand1//operand2)
+                i=j+1
+                
+        result=0
+        for i in stack:
+            result=result+i
+            
+        return result
+                        
+ 
+ 
+Input
+"42"
+Output
+6
+Expected
+42
+        
