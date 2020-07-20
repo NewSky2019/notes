@@ -1,0 +1,53 @@
+1. wrong code
+
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        
+        rowIndices=[]
+        
+        direction="down"
+        
+        nextRowIndex=0
+        
+        for i in range(len(s)):
+            currentRowIndex=nextRowIndex
+            rowIndices.append(currentRowIndex)
+            
+            if direction=="down" and currentRowIndex!=numRows-2:
+                nextRowIndex=currentRowIndex+1
+            
+            elif direction=="down" and currentRowIndex==numRows-2:
+                nextRowIndex=currentRowIndex+1
+                direction="up"
+                
+            elif direction=="up" and currentRowIndex!=1:
+                nextRowIndex=currentRowIndex-1
+            
+            elif direction=="up" and currentRowIndex==1:
+                nextRowIndex=currentRowIndex-1
+                direction="down"
+                
+        
+        newStr=""
+        for i in range(0,numRows):
+            for j in range(len(rowIndices)):
+                if rowIndices[j]==i:
+                    newStr=newStr+s[j]
+                    
+        return newStr
+        
+        
+      
+      
+Input
+"AB"
+1
+Output
+"A"
+Expected
+"AB"
