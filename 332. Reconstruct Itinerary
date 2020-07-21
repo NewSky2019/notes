@@ -1,3 +1,5 @@
+1. forgot the break
+
 class Solution(object):
     def findItinerary(self, tickets):
         """
@@ -34,6 +36,51 @@ Input
 [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]
 Output
 ["JFK","SFO","SFO","SFO"]
+Expected
+["JFK","MUC","LHR","SFO","SJC"]
+
+
+
+2. for the last station, you need to add its destination to the result
+
+class Solution(object):
+    def findItinerary(self, tickets):
+        """
+        :type tickets: List[List[str]]
+        :rtype: List[str]
+        """
+        tickets=sorted(tickets,key=lambda x: x[1])
+        
+        numUsed=0
+        result=[]
+        
+        for i in tickets:
+            if i[0]=="JFK":
+                break
+                
+        currentStation=i
+        
+        while numUsed<len(tickets):
+            
+            numUsed=numUsed+1
+            result.append(currentStation[0])
+            
+            for j in tickets:
+                if j[0]==currentStation[1]:
+                    currentStation=j
+                    break
+                    
+        
+                    
+                    
+        return result
+                    
+            
+            
+Input
+[["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]
+Output
+["JFK","MUC","LHR","SFO"]
 Expected
 ["JFK","MUC","LHR","SFO","SJC"]
         
