@@ -84,3 +84,53 @@ Output
 Expected
 ["JFK","MUC","LHR","SFO","SJC"]
         
+        
+        
+        
+     
+     
+     
+     
+3. use same  station more than once, formulate a local loop
+
+class Solution(object):
+    def findItinerary(self, tickets):
+        """
+        :type tickets: List[List[str]]
+        :rtype: List[str]
+        """
+        tickets=sorted(tickets,key=lambda x: x[1])
+        
+        numUsed=0
+        result=[]
+        
+        for i in tickets:
+            if i[0]=="JFK":
+                break
+                
+        currentStation=i
+        
+        while numUsed<len(tickets):
+            
+            numUsed=numUsed+1
+            result.append(currentStation[0])
+            
+            for j in tickets:
+                if j[0]==currentStation[1]:
+                    currentStation=j
+                    break
+                    
+        result.append(currentStation[1])
+                 
+        return result
+                    
+            
+        
+        
+        
+Input
+[["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+Output
+["JFK","ATL","JFK","ATL","JFK","JFK"]
+Expected
+["JFK","ATL","JFK","SFO","ATL","SFO"]
