@@ -134,3 +134,54 @@ Output
 ["JFK","ATL","JFK","ATL","JFK","JFK"]
 Expected
 ["JFK","ATL","JFK","SFO","ATL","SFO"]
+
+
+
+
+
+
+4. start from the JFK with smallest lexical order cannot format the itneray.
+
+def findItinerary(self, tickets):
+        """
+        :type tickets: List[List[str]]
+        :rtype: List[str]
+        """
+        tickets=sorted(tickets,key=lambda x: x[1])
+        
+        
+        
+        numUsed=0
+        result=[]
+        
+        for i in tickets:
+            if i[0]=="JFK":
+                break
+                
+        currentStation=i
+        theDict={}
+        
+        while numUsed<len(tickets):
+            
+            numUsed=numUsed+1
+            result.append(currentStation[0])
+            theDict[tuple(currentStation)]=1
+            
+            for j in tickets:
+                if j[0]==currentStation[1] and tuple(j) not in theDict:
+                    currentStation=j
+                    break
+                    
+        result.append(currentStation[1])
+                 
+        return result
+                    
+                    
+                  
+                  
+Input
+[["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
+Output
+["JFK","JFK","JFK","KUL"]
+Expected
+["JFK","NRT","JFK","KUL"]
