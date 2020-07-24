@@ -1,3 +1,60 @@
+1. why starts changes
+
+def findItinerary(tickets):
+    """
+    :type tickets: List[List[str]]
+    :rtype: List[str]
+    """
+    starts = []
+    for i in tickets:
+        if i[0] == "JFK":
+            starts.append(i)
+
+    itineries = []
+
+    for i in starts:
+        print("here starts is ",starts)
+
+        traceBehind = []
+        itinerariesFromThisStart = dfsVisit(i, tickets, traceBehind)
+        print("and here starts is ", starts)
+
+        for j in itinerariesFromThisStart:
+            itineries.append(j)
+
+
+
+def dfsVisit(station, tickets, traceBehind):
+    itinerariesFromThisStation = []
+
+    nextStations = []
+
+    for i in tickets:
+        if i not in traceBehind and i[0] == station[1]:
+            nextStations.append(i)
+
+    if nextStations == []:
+        return [station]
+
+    for i in nextStations:
+        itsTraceBehind = traceBehind[:]
+        itsTraceBehind.append(station)
+
+        itinerariesFromIt = dfsVisit(i, tickets, itsTraceBehind)
+
+        for j in itinerariesFromIt:
+            j.insert(0, station[0])
+            itinerariesFromThisStation.append(j)
+
+    return itinerariesFromThisStation
+
+
+tickets=[["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+findItinerary(tickets)
+
+
+
+
 1.
 itinerariesFromIt=self.dfsVisit(i,tickets,itsTraceBehind)
             for j in itinerariesFromIt:
