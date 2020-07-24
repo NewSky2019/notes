@@ -1,3 +1,19 @@
+1.
+itinerariesFromIt=self.dfsVisit(i,tickets,itsTraceBehind)
+            for j in itinerariesFromIt:
+                j=j.insert(0,station)
+                itinerariesFromThisStation.append(j)
+                
+ 
+
+j=["jdj"]
+station="yuew"
+j = j.insert(0, station)
+print(j)
+
+result is None, insert return nothing
+
+
 1.wrong: list object has no attribute copy
 
 itsTraceBehind=traceBehind.copy()
