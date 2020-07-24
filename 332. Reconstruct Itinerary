@@ -1,3 +1,9 @@
+1.wrong: list object has no attribute copy
+
+itsTraceBehind=traceBehind.copy()
+
+
+
 1. forgot the break
 
 class Solution(object):
