@@ -8,7 +8,7 @@ def findItinerary(tickets):
     starts = []
     for i in tickets:
         if i[0] == "JFK":
-            starts.append(i)
+            starts.append(i) #changes to starts.append(i[:])
 
     itineries = []
 
