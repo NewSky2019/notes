@@ -1,3 +1,72 @@
+1 station changes in wrong way
+
+def findItinerary(tickets):
+    """
+    :type tickets: List[List[str]]
+    :rtype: List[str]
+    """
+    starts = []
+    for i in tickets:
+        if i[0] == "JFK":
+            starts.append(i[:])
+
+    itineries = []
+
+    for start in starts:
+
+        traceBehind = []
+        itinerariesFromThisStart = dfsVisit(start, tickets, traceBehind)
+        #print("itinerariesFromThisStart is ",itinerariesFromThisStart)
+
+
+        for j in itinerariesFromThisStart:
+            itineries.append(j)
+
+    print(itineries)
+
+
+
+def dfsVisit(station, tickets, traceBehind):
+    print("station is ",station)
+    itinerariesFromThisStation = []
+
+    nextStations = []
+
+    for i in tickets:
+        if i not in traceBehind and i[0] == station[1]:
+            nextStations.append(i)
+
+    #print("station and next stations is ",station, nextStations)
+
+    if nextStations == []:
+        return [station]
+
+    for i in nextStations:
+        itsTraceBehind = traceBehind[:]
+        itsTraceBehind.append(station)
+
+        itinerariesFromIt = dfsVisit(i, tickets, itsTraceBehind)
+
+        for j in itinerariesFromIt:
+            j.insert(0, station[0])
+            itinerariesFromThisStation.append(j)
+
+    return itinerariesFromThisStation
+
+
+
+tickets=[["JFK","ATL"],["ATL","JFK"],["JFK","SFO"],["SFO","ATL"],["ATL","SFO"]]
+findItinerary(tickets)
+
+
+
+
+
+
+
+
+
+
 1. why starts changes
 
 def findItinerary(tickets):
