@@ -1,3 +1,23 @@
+1.
+
+def f():
+    a=[[2],[3]]
+    b=[]
+    for i in a:
+        i.insert(0,83)
+        b.append(i)
+
+    for j in a:
+        j.insert(0,929)
+
+    print(b)
+
+f()
+
+
+
+
+
 1.remove has no return type
 a=[3,4,5]
 b=a.remove(3)
