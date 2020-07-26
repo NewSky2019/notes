@@ -1,0 +1,53 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root==None:
+            return 0
+        else:
+            maxL=0
+            currentLayer=[root]
+            while currentLayer!=[]:
+                nextLayer=[]
+                for i in currentLayer:
+                    if i.left!=None:
+                        nextLayer.append(i.left)
+                        
+                    if i.right!=None:
+                        nextLayer.append(i.right)
+                        
+                    length=self.pathLengthPassANode(i)
+                    if length>maxL:
+                        maxL=length
+                        
+                
+                currentLayer=nextLayer
+                
+            
+            return maxL
+        
+    
+    def pathLengthPassANode(self,theNode):
+        if theNode==None:
+            return 0
+        
+        else:
+            return self.pathLengthPassANode(theNode.left)+1+self.pathLengthPassANode(theNode.right)
+            
+            
+        
+Input
+[1,2,3,4,5]
+Output
+5
+Expected
+3
+        
