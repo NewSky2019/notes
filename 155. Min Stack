@@ -1,4 +1,5 @@
-1. list index out of range return self.mins[-1]
+1. list index out of range return self.mins[-1], the reason is that if x<self.mins[-1] should be changed to if x<=self.mins[-1]:
+
 
 class MinStack(object):
 
