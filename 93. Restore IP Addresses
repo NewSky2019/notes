@@ -124,3 +124,58 @@ Output
 ["0.1.0.010","0.1.00.10","0.1.001.0","0.10.0.10","0.10.01.0","0.100.1.0","01.0.0.10","01.0.01.0","01.00.1.0","010.0.1.0"]
 Expected
 ["0.10.0.10","0.100.1.0"]
+
+
+
+
+3.
+
+class Solution(object):
+    def restoreIpAddresses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        combinations=self.allCombinations(s)
+        
+        result=[]
+        
+        for i in combinations:
+            if self.isValidIP(i)==True:
+                result.append(i)
+                
+        
+        return result
+        
+        
+    
+    def allCombinations(self,s):
+        result=[]
+        
+        for i in range(0,3):
+            for j in range(i+1,i+4):
+                for k in range(j+1,j+4):
+                    sec1=s[:i+1]
+                    sec2=s[i+1:j+1]
+                    sec3=s[j+1:k+1]
+                    sec4=s[k+1:]
+                    
+                    address=sec1+"."+sec2+"."+sec3+"."+sec4
+                    result.append(address)
+                    
+        
+        return result
+        
+       
+    
+    def isValidIP(self,s):
+        temp=s.split(".")
+        
+        for i in temp:
+            if i[0]=="0" and i!="0":
+                return False
+            
+            if i=="" or int(i)<0 or int(i)>255:
+                return False
+            
+        return True
