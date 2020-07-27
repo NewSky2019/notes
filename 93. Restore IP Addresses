@@ -1,0 +1,54 @@
+1. divide into 4 parts, you should set 3 points, rather than 4 points
+
+def restoreIpAddresses(s):
+    """
+    :type s: str
+    :rtype: List[str]
+    """
+    combinations = setPoints(s, 4)
+    print("combinations is ",combinations)
+    print(len(combinations))
+
+    result = []
+
+    for i in combinations:
+        if isValidIP(i) == True:
+            result.append(i)
+
+    return result
+
+
+def setPoints(s, numPoints):
+    if len(s) == 0:
+        return ""
+
+    elif len(s) == 1:
+        if numPoints == 0:
+            return s
+        else:
+            return ""
+
+    partialRes1 = setPoints(s[1:], numPoints - 1)
+    partialRes2 = setPoints(s[1:], numPoints)
+
+    result = []
+    for i in partialRes1:
+        result.append(s[0] + "." + i)
+
+    for i in partialRes2:
+        result.append(s[0] + i)
+
+    return result
+
+
+def isValidIP(s):
+    temp = s.split(".")
+
+    if len(temp) != 4:
+        return False
+    else:
+        for i in range(4):
+            if int(temp[i]) < 0 or int(temp[i]) > 255:
+                return False
+
+        return True
