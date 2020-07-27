@@ -1,0 +1,53 @@
+1. list index out of range return self.mins[-1]
+
+class MinStack(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.theList=[]
+        self.mins=[]
+        
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.theList.append(x)
+        
+        if self.mins==[]:
+            self.mins.append(x)
+        else:
+            if x<self.mins[-1]:
+                self.mins.append(x)
+        
+        
+    def pop(self):
+        """
+        :rtype: None
+        """
+        if self.theList[-1]==self.mins[-1]:
+            del self.mins[-1]
+            
+        del self.theList[-1]
+        
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.theList[-1]
+        
+
+    def getMin(self):
+        """
+        :rtype: int
+        """
+        return self.mins[-1]
+        
+        
+        
+["MinStack","push","push","push","getMin","pop","getMin"]
+[[],[0],[1],[0],[],[],[]]
