@@ -57,3 +57,70 @@ def isValidIP(s):
       
 
 2."0.1.0.010" is not a correct one, since 010 is not a valid integer
+
+class Solution(object):
+    def restoreIpAddresses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        combinations=self.setPoints(s,3)
+        
+        result=[]
+        
+        for i in combinations:
+            if self.isValidIP(i)==True:
+                result.append(i)
+                
+        
+        return result
+        
+        
+    
+    def setPoints(self,s,numPoints):
+        
+        if len(s)==0:
+            return ""
+        
+        elif len(s)==1:
+            if numPoints==0:
+                return s
+            else:
+                return ""
+        
+        
+        partialRes1=self.setPoints(s[1:],numPoints-1)
+        partialRes2=self.setPoints(s[1:],numPoints)
+        
+        result=[]
+        for i in partialRes1:
+            result.append(s[0]+"."+i)
+            
+        for i in partialRes2:
+            result.append(s[0]+i)
+            
+        
+        return result
+        
+        
+    
+    def isValidIP(self,s):
+        temp=s.split(".")
+        
+        if len(temp)!=4:
+            return False
+        else:
+            for i in range(4):
+                if int(temp[i])<0 or int(temp[i])>255:
+                    return False
+                
+            return True
+        
+        
+     
+Input
+"010010"
+Output
+["0.1.0.010","0.1.00.10","0.1.001.0","0.10.0.10","0.10.01.0","0.100.1.0","01.0.0.10","01.0.01.0","01.00.1.0","010.0.1.0"]
+Expected
+["0.10.0.10","0.100.1.0"]
