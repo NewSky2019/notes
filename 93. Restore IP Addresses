@@ -52,3 +52,8 @@ def isValidIP(s):
                 return False
 
         return True
+        
+        
+      
+
+2."0.1.0.010" is not a correct one, since 010 is not a valid integer
