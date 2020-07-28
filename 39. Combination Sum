@@ -1,3 +1,4 @@
+1.
 class Solution(object):
     def combinationSum(self, candidates, target):
         """
@@ -36,4 +37,40 @@ Output
 []
 Expected
 [[2,2,3],[7]]
+
+
+
+2.
+
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        
+      
+        
+        
+        result=[]
+        
+        if target==0:
+            return [[]]
+        
+        if target<0:
+            return None
+        
+        for i in candidates:
+            partialRes=self.combinationSum(candidates,target-i)
+            if partialRes==None:
+                continue
+            else:
+                for j in partialRes:
+                    result.append(j.insert(0,i))
+                    
+        
+        return result
+                
+        
                 
