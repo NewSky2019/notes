@@ -1,3 +1,36 @@
+1.
+
+def searchLast(nums, target):
+    leftBoundary = 0
+    rightBoundary = len(nums) - 1
+
+    while rightBoundary - leftBoundary + 1 > 0:
+        print("left,right ",leftBoundary,rightBoundary)
+        if nums[rightBoundary] == target:
+            return rightBoundary
+        else:
+            mid = leftBoundary + (rightBoundary - leftBoundary) // 2
+            print("mid is ",mid)
+            if target < nums[mid]:
+                rightBoundary = rightBoundary - 1
+
+            elif target > nums[mid]:
+                leftBoundary = mid + 1
+
+            elif target == nums[mid]:
+                leftBoundary = mid
+
+
+    return -1
+
+nums=[5,7,7,8,8,10]
+target=8
+print(searchLast(nums, target))
+
+
+
+2.
+
 class Solution(object):
     def searchRange(self, nums, target):
         """
