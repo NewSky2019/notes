@@ -1,0 +1,68 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        first=self.searchFirst(nums,target)
+        last=self.searchFirst(nums,target)
+        
+        return [first,last]
+        
+        
+    
+    def searchFirst(self,nums,target):
+        leftBoundary=0
+        rightBoundary=len(nums)-1
+        
+        while rightBoundary-leftBoundary+1>0:
+            if nums[leftBoundary]==target:
+                return leftBoundary
+            else:
+                mid=leftBoundary+(rightBoundary-leftBoundary)//2
+                if target<nums[mid]:
+                    rightBoundary=mid-1
+                    
+                elif target==nums[mid]:
+                    rightBoundary=mid
+                    
+                elif target>nums[mid]:
+                    leftBoundary=mid+1
+                    
+        return -1
+        
+        
+        
+        
+    
+    
+    def searchLast(self,nums,target):
+        leftBoundary=0
+        rightBoundary=len(nums)-1
+        
+        while rightBoundary-leftBoundary+1>0:
+            if nums[rightBoundary]==target:
+                return rightBoundary
+            else:
+                mid=leftBoundary+(rightBoundary-leftBoundary)//2
+                if target<nums[mid]:
+                    rightBoundary=rightBoundary-1
+                
+                elif target>nums[mid]:
+                    leftBoundary=mid+1
+                    
+                elif target==nums[mid]:
+                    leftBoundary=mid
+                    
+        return -1
+        
+        
+      
+Input
+[5,7,7,8,8,10]
+8
+Output
+[3,3]
+Expected
+[3,4]
