@@ -10,7 +10,7 @@ class Solution(object):
         str=""
         while num>0:
             for i in range(len(vals)):
-                if num-vals[i]>0:
+                if num-vals[i]>0:  #here, its should be >=
                     str=str+symbols[i]
                     num=num-vals[i]
                     break
