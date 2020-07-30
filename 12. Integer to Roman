@@ -1,0 +1,21 @@
+class Solution(object):
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        vals=[1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        symbols=["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"]
+        
+        str=""
+        while num>0:
+            for i in range(len(vals)):
+                if num-vals[i]>0:
+                    str=str+symbols[i]
+                    num=num-vals[i]
+                    break
+                    
+        
+        return str
+                    
+        
