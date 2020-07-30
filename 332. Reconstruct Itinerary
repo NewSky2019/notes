@@ -1,3 +1,53 @@
+class Solution(object):
+   
+    def findItinerary(self, tickets):
+        """
+        :type tickets: List[List[str]]
+        :rtype: List[str]
+        """
+        starts=[]
+        
+        for i in tickets:
+            if i[0]=="JFK":
+                starts.append(i)
+                
+        starts=sorted(starts,key=lambda x:x[1])
+        
+        for i in starts:
+            temp=tickets[:]
+            temp.remove(i)
+            remainingTickets=temp
+            if self.dfs(i,remainingTickets)!=None:
+                return self.dfs(i,remainingTickets)
+            
+            
+    
+    def dfs(self,start,remainingTickets):
+        
+        
+        if len(remainingTickets)==0:
+            return start
+        
+        nextStations=[]
+        
+        for i in remainingTickets:
+            if i[0]==start[1]:
+                nextStations.append(i)
+                
+        
+        nextStations=sorted(nextStations,key=lambda x:x[1])
+        
+        for i in nextStations:
+            temp=remainingTickets[:]
+            temp.remove(i)
+            itsRemainingTickets=temp
+            if self.dfs(i,itsRemainingTickets)!=None:
+                return [start[0]]+self.dfs(i,itsRemainingTickets)
+            
+        
+        return None
+
+
 1.
 
 class Solution(object):
