@@ -1,3 +1,5 @@
+1. wrong recursive relation
+
 class Solution(object):
     def minPathSum(self, grid):
         """
