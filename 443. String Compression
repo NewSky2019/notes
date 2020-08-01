@@ -1,6 +1,43 @@
+1.
+
 Input
 ["a","a","a","b","b","a","a"]
 Output
 ["a","5","b","2"]
 Expected
 ["a","3","b","2","a","2"]
+
+
+2.
+class Solution(object):
+    def compress(self, chars):
+        """
+        :type chars: List[str]
+        :rtype: int
+        """
+        i=0
+        while i<=len(chars)-1:
+            times=1
+            j=i+1
+            while j<=len(chars)-1:
+                if chars[j]!=chars[i]:
+                    break
+                else:
+                    times=times+1
+                    del chars[j]
+                  
+                    
+            if times==1:
+                i=i+1
+            else:
+                numStr=str(times)
+                p=i+1
+                for char in numStr:
+                    chars.insert(p,char)
+                    p=p+1
+                    
+                i=i+len(numStr)
+               
+                
+        
+        return len(chars)
