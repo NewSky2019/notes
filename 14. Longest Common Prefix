@@ -66,3 +66,42 @@ Output
 null
 Expected
 ""
+
+
+3.
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if len(strs)==0:
+            return ""
+        
+        
+        minLength=len(strs[0])
+        
+        if minLength==0:
+            return ""
+        
+        for i in strs:
+            if len(i)<minLength:
+                minLength=len(i)
+                
+        for i in range(minLength):
+            theChar=strs[0][i]
+            for j in strs:
+                if j[i]!=theChar:
+                    if i==0:
+                        return ""
+                    else:
+                        return strs[0][:i]
+                        
+                        
+                 
+Input
+["a"]
+Output
+null
+Expected
+"a"
