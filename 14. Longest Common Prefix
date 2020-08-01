@@ -166,6 +166,9 @@ class Solution(object):
             return ""
         
         minLength=len(strs[0])
+        for i in strs:
+            if len(i)<minLength:
+                minLength=len(i)
         
         result=""
         
@@ -188,3 +191,6 @@ Output
 null
 Expected
 ""
+
+
+5.
