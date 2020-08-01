@@ -1,3 +1,5 @@
+1. break only exit the inner for loop
+
 class Solution(object):
     def longestCommonPrefix(self, strs):
         """
@@ -20,3 +22,38 @@ class Solution(object):
             return ""
         else:
             return strs[0][:i]
+
+
+2.
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if len(strs)==0:
+            return ""
+        
+        
+        minLength=len(strs[0])
+        
+        for i in strs:
+            if len(i)<minLength:
+                minLength=len(i)
+                
+        for i in range(minLength):
+            theChar=strs[0][i]
+            for j in strs:
+                if j[i]!=theChar:
+                    if i==0:
+                        return ""
+                    else:
+                        return strs[0][:i]
+                        
+             
+Input
+[""]
+Output
+null
+Expected
+""
