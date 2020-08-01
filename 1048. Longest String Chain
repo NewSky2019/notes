@@ -1,0 +1,38 @@
+class Solution(object):
+    def longestStrChain(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        maxL=1
+        for i in words:
+            itsMaxL=self.LSCEndWithAWord(i,words)
+            if itsMaxL>maxL:
+                maxL=itsMaxL
+                
+        return maxL
+    
+    
+    def LSCEndWithAWord(self,word,words):
+        
+        maxL=1
+        
+        for i in words:
+            if self.isPredecessor(i,word)==True:
+                length=self.LSCEndWithAWord(i,words)+1
+                if length>maxL:
+                    maxL=length
+                    
+        return maxL
+    
+    
+    
+    def isPredecessor(self,a,b):
+        
+        if len(a)+1!=len(b):
+            return False
+        else:
+            a=sorted(a)
+            b=sorted(b)
+            return a==b[:len(a)]
+        
