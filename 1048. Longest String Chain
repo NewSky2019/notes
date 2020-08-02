@@ -1,3 +1,18 @@
+1. wrong function
+
+def isPredecessor(a, b):
+    if len(a) + 1 != len(b):
+        return False
+    else:
+        a = sorted(a)
+        b = sorted(b)
+        return a == b[:len(a)]
+        
+print(isPredecessor("kssq", "ksqsq"))
+
+
+
+
 class Solution(object):
     def longestStrChain(self, words):
         """
