@@ -1,0 +1,28 @@
+1
+
+class Solution(object):
+    def mostCommonWord(self, paragraph, banned):
+        """
+        :type paragraph: str
+        :type banned: List[str]
+        :rtype: str
+        """
+        theDict={}
+        for i in paragraph:
+            i=i.lower()
+            if i in banned:
+                continue
+            else:
+                if i not in theDict:
+                    theDict[i]=1
+                else:
+                    theDict[i]=theDict[i]+1
+                    
+        maxTimes=0
+        
+        for i in theDict:
+            if theDict[i]>maxTimes:
+                maxTimes=theDict[i]
+                theOne=i
+                
+        return theOne
