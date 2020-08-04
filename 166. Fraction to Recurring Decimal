@@ -198,3 +198,57 @@ Output
 "0.(((012)))"
 Expected
 "0.(012)"
+
+
+
+
+5.
+
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        if numerator%denominator==0:
+            return str(numerator//denominator)
+        
+        else:
+            theDict={}
+            decimal=""
+            
+            integerPart=numerator//denominator
+            
+            remainder=numerator%denominator
+            
+           
+            
+            while remainder!=0:
+                quotient=remainder*10
+                remainder=quotient%denominator
+                quotient=quotient//denominator
+                
+                if quotient in theDict:
+                    
+                    for i in range(len(decimal)):
+                        if int(decimal[i])==quotient:
+                            decimal=decimal[:i]+"("+decimal[i:]+")"
+                            break
+                    
+                    return str(integerPart)+"."+decimal
+                else:
+                    decimal=decimal+str(quotient)
+                    theDict[quotient]=0
+                    
+            return str(integerPart)+"."+decimal
+                
+                
+        
+Input
+1
+333
+Output
+"0.(0)"
+Expected
+"0.(003)"
