@@ -1,7 +1,4 @@
-1.
-
-class Solution(object):
-    def fractionToDecimal(self, numerator, denominator):
+def fractionToDecimal(self, numerator, denominator):
         """
         :type numerator: int
         :type denominator: int
@@ -9,246 +6,34 @@ class Solution(object):
         """
         if numerator%denominator==0:
             return str(numerator//denominator)
-        
         else:
-            theDict={}
-            decimal=""
-            
             integerPart=numerator//denominator
-            
             remainder=numerator%denominator
             
-           
-            
-            while remainder!=0:
-                quotient=remainder*10
-                remainder=quotient%denominator
-                quotient=quotient//denominator
-                
-                if quotient in theDict:
-                    decimal="("+decimal+")"
-                    return str(integerPart)+"."+decimal
-                else:
-                    decimal=decimal+str(quotient)
-                    theDict[quotient]=0
-                    
-            return str(integerPart)+"."+decimal
-                
-
-Input:
-1
-6
-Output:
-"0.(16)"
-Expected:
-"0.1(6)"
-
-
-
-
-
-
-2.
-class Solution(object):
-    def fractionToDecimal(self, numerator, denominator):
-        """
-        :type numerator: int
-        :type denominator: int
-        :rtype: str
-        """
-        if numerator%denominator==0:
-            return str(numerator//denominator)
-        
-        else:
             theDict={}
             decimal=""
-            
-            integerPart=numerator//denominator
-            
-            remainder=numerator%denominator
-            
-           
+            pos=0
             
             while remainder!=0:
-                quotient=remainder*10
-                remainder=quotient%denominator
-                quotient=quotient//denominator
-                
-                if quotient in theDict:
-                    decimal=decimal+"("+str(quotient)+")"
-                    return str(integerPart)+"."+decimal
+                if remainder in theDict:
+                    recurStartPos=theDict[remainder]
+                    return str(integerPart)+"."+decimal[:recurStartPos]+"("+decimal[recurStartPos]+")"
                 else:
+                    theDict[remainder]=pos
+                    numerator=remainder*10
+                    quotient=numerator//denominator
                     decimal=decimal+str(quotient)
-                    theDict[quotient]=0
+                    remainder=numerator%denominator
+                    pos=pos+1
                     
             return str(integerPart)+"."+decimal
             
             
-            
-Input
-4
-333
-Output
-"0.012(0)"
-Expected
-"0.(012)"
-                
-               
-               
-               
-          
- 3. 
  
- def fractionToDecimal(self, numerator, denominator):
-        """
-        :type numerator: int
-        :type denominator: int
-        :rtype: str
-        """
-        if numerator%denominator==0:
-            return str(numerator//denominator)
-        
-        else:
-            theDict={}
-            decimal=""
-            
-            integerPart=numerator//denominator
-            
-            remainder=numerator%denominator
-            
-           
-            
-            while remainder!=0:
-                quotient=remainder*10
-                remainder=quotient%denominator
-                quotient=quotient//denominator
-                
-                if quotient in theDict:
-                    
-                    for i in range(len(decimal)):
-                        if decimal[i]==quotient:
-                            decimal=decimal[:i]+"("+decimal[i:]+")"
-                    
-                    return str(integerPart)+"."+decimal
-                else:
-                    decimal=decimal+str(quotient)
-                    theDict[quotient]=0
-                    
-            return str(integerPart)+"."+decimal
-                
-                
-                
-Input
-2
-3
-Output
-"0.6"
-Expected
-"0.(6)"
-
-
-
-
-4.
-class Solution(object):
-    def fractionToDecimal(self, numerator, denominator):
-        """
-        :type numerator: int
-        :type denominator: int
-        :rtype: str
-        """
-        if numerator%denominator==0:
-            return str(numerator//denominator)
-        
-        else:
-            theDict={}
-            decimal=""
-            
-            integerPart=numerator//denominator
-            
-            remainder=numerator%denominator
-            
-           
-            
-            while remainder!=0:
-                quotient=remainder*10
-                remainder=quotient%denominator
-                quotient=quotient//denominator
-                
-                if quotient in theDict:
-                    
-                    for i in range(len(decimal)):
-                        if int(decimal[i])==quotient:
-                            decimal=decimal[:i]+"("+decimal[i:]+")"
-                    
-                    return str(integerPart)+"."+decimal
-                else:
-                    decimal=decimal+str(quotient)
-                    theDict[quotient]=0
-                    
-            return str(integerPart)+"."+decimal
-                
-                
-                
-         
 Input
 4
-333
-Output
-"0.(((012)))"
-Expected
-"0.(012)"
-
-
-
-
-5.
-
-class Solution(object):
-    def fractionToDecimal(self, numerator, denominator):
-        """
-        :type numerator: int
-        :type denominator: int
-        :rtype: str
-        """
-        if numerator%denominator==0:
-            return str(numerator//denominator)
-        
-        else:
-            theDict={}
-            decimal=""
-            
-            integerPart=numerator//denominator
-            
-            remainder=numerator%denominator
-            
-           
-            
-            while remainder!=0:
-                quotient=remainder*10
-                remainder=quotient%denominator
-                quotient=quotient//denominator
-                
-                if quotient in theDict:
-                    
-                    for i in range(len(decimal)):
-                        if int(decimal[i])==quotient:
-                            decimal=decimal[:i]+"("+decimal[i:]+")"
-                            break
-                    
-                    return str(integerPart)+"."+decimal
-                else:
-                    decimal=decimal+str(quotient)
-                    theDict[quotient]=0
-                    
-            return str(integerPart)+"."+decimal
-                
-                
-        
-Input
-1
 333
 Output
 "0.(0)"
 Expected
-"0.(003)"
+"0.(012)"
