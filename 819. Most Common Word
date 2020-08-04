@@ -26,3 +26,15 @@ class Solution(object):
                 theOne=i
                 
         return theOne
+
+
+
+2.
+
+Input
+"a, a, a, a, b,b,b,c, c"
+["a"]
+Output
+"b,b,b,c"
+Expected
+"b"
