@@ -1,4 +1,5 @@
-def fractionToDecimal(self, numerator, denominator):
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
         """
         :type numerator: int
         :type denominator: int
@@ -17,7 +18,7 @@ def fractionToDecimal(self, numerator, denominator):
             while remainder!=0:
                 if remainder in theDict:
                     recurStartPos=theDict[remainder]
-                    return str(integerPart)+"."+decimal[:recurStartPos]+"("+decimal[recurStartPos]+")"
+                    return str(integerPart)+"."+decimal[:recurStartPos]+"("+decimal[recurStartPos:]+")"
                 else:
                     theDict[remainder]=pos
                     numerator=remainder*10
@@ -29,11 +30,10 @@ def fractionToDecimal(self, numerator, denominator):
             return str(integerPart)+"."+decimal
             
             
- 
 Input
-4
-333
+-50
+8
 Output
-"0.(0)"
+"-7.75"
 Expected
-"0.(012)"
+"-6.25"
