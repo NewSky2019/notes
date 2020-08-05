@@ -1,0 +1,44 @@
+class Solution(object):
+    def dailyTemperatures(self, T):
+        """
+        :type T: List[int]
+        :rtype: List[int]
+        """
+        theDict={}
+        
+        stack=[]
+        
+        for i in range(len(T)):
+            if stack==[]:
+                stack.append(i)
+                
+            else:
+                while stack!=[]:
+                    indexOfTheTopOne=stack[-1]
+                    temperatureOfTheTopOne=T[indexOfTheTopOne]
+                    
+                    if T[i]<=temperatureOfTheTopOne:
+                        stack.append(i)
+                        break
+                    else:
+                        theDict[indexOfTheTopOne]=i
+                        stack.pop()
+                        
+        result=[]
+        
+        for i in range(len(T)):
+            if i not in theDict:
+                result.append(0)
+            else:
+                result.append(theDict[i]-i)
+        
+        return result
+        
+        
+        
+Input
+[73,74,75,71,69,72,76,73]
+Output
+[1,0,4,2,1,1,0,0]
+Expected
+[1,1,4,2,1,1,0,0]
