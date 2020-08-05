@@ -1,0 +1,74 @@
+# """
+# This is the interface that allows for creating nested lists.
+# You should not implement it, or speculate about its implementation
+# """
+#class NestedInteger(object):
+#    def isInteger(self):
+#        """
+#        @return True if this NestedInteger holds a single integer, rather than a nested list.
+#        :rtype bool
+#        """
+#
+#    def getInteger(self):
+#        """
+#        @return the single integer that this NestedInteger holds, if it holds a single integer
+#        Return None if this NestedInteger holds a nested list
+#        :rtype int
+#        """
+#
+#    def getList(self):
+#        """
+#        @return the nested list that this NestedInteger holds, if it holds a nested list
+#        Return None if this NestedInteger holds a single integer
+#        :rtype List[NestedInteger]
+#        """
+
+class NestedIterator(object):
+
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        self.flattenedList=[]
+        self.f(nestedList)
+        self.currentInd=0
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        res=self.flattenedList[self.currentInd]
+        self.currentInd=self.currentInd+1
+        return res
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.currentInd<=len(self.flattenedList)-1
+        
+    def f(self,anObject):
+        
+        if anObject.isInteger()==True:
+            self.flattenedList.append(anObject)
+        
+        else:
+            allInteger==True
+            for i in anObject:
+                if i.isInteger()==False:
+                    allInteger=False
+                    break
+                    
+            if allInteger==True:
+                for i in anObject:
+                    self.flattenedList.append(i)
+                    
+            else:
+                for i in anObject:
+                    self.f(i)
+        
+
+# Your NestedIterator object will be instantiated and called as such:
+# i, v = NestedIterator(nestedList), []
+# while i.hasNext(): v.append(i.next())
